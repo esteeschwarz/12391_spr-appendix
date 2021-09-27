@@ -14,7 +14,7 @@
  * https://www.tutorialspoint.com/javascript/array_some.htm
  */
 
-//----------
+//---------- AS MODIFIED 06/2021 by ST.SCHWARZ-------------------
 ////////////////////////////////////////////////SEARCH FOR [11272] TO FIND LINE WHERE TO INCLUDE ITEMS /////11252 for save routine///////////////////////////////////////
 //-----------------------
 
