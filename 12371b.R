@@ -1,4 +1,4 @@
-##ST.SCHWARZ/11351b/HUX20210829(00.47)
+##ST.SCHWARZ/11351b/HUX20210927(16.08)
 
 ##von hier der reihe nach:
 
@@ -8,7 +8,9 @@ library(lmerTest)
 library(stringi)
 
 
-sprdataprepared <- read.csv("https://common.rotefadenbuecher.de/uni/public/jespr/modified/sprdataprepared.csv", sep=";")
+#sprdataprepared <- read.csv("https://common.rotefadenbuecher.de/uni/public/jespr/modified/sprdataprepared.csv", sep=";")
+sprdataprepared <- read.csv("sprdatamod.csv", sep=";")
+
 ##View(sprdataprepared)
 ##top datenframe aus datei, gueltige faelle, target 0+1
 sprdatasm<-sprdataprepared
@@ -27,11 +29,11 @@ dtatarget1<-  subset(dtatargetgilt, target==1)
 dtatarget01<- subset(dtatargetgilt, target==0|target==1) 
 ##hier sampleauswahl modifizieren
 #dtatarget<-dtatargetcpt
-dtatarget<-dtatarget01
-#dtatarget<-dtatarget0
+#dtatarget<-dtatarget01
+dtatarget<-dtatarget0
 #choose labeling >
-#boxlabtgt<-", target 0"
-boxlabtgt<-", target 0+1"
+boxlabtgt<-", target 0"
+#boxlabtgt<-", target 0+1"
 #----------------------
 #für descriptive analysis denselben filter verwenden
 ## hier denselben filter auswaehlen wie oben
@@ -43,14 +45,14 @@ subdescr<-dtatarget
 
 #berechne outliers zeichenunabhängig
 #outliers.formula
-#outl.form1<-dtatarget$adinterval
+outl.form1<-dtatarget$adinterval
 outl.form2.0<-dtatarget$timeinterval
 #outl.form2.1<-dtatarget1$timeinterval
 
-#outl.form0<-outl.form2.0
+outl.form0<-outl.form2.0
 #outl.form1<-outl.form2.1
 
-outl.form<-outl.form2.0
+outl.form<-outl.form0
 
 sprmean<-mean(outl.form)
 stdev<-sd(outl.form)
@@ -541,7 +543,6 @@ mdLZD<-median(LZMMc)
 difsmem<-mdLZA-mdLZB
 difsmlc<-mdLZA-mdLZC
 difsmmm<-mdLZA-mdLZD
-#SM < em < mm < lc
 difemlc<-mdLZB-mdLZC
 difemmm<-mdLZB-mdLZD
 diflcmm<-mdLZC-mdLZD
@@ -578,3 +579,171 @@ boxplot(boxLZmn,main=toplab,xlab=lab1)
 
 #12373.
 #coefficients(sumSMEM)
+
+#12393.
+
+#---D---- added LZ -----------
+#R/F der reihe nach > mean response
+subdescr<-subset(subdescr,subdescr$target==0)
+#subsets kategorienvergleich
+SSM<-subset(subdescr,group=="SM")
+SEM<-subset(subdescr,group=="EM")
+SLC<-subset(subdescr,group=="LC")
+SMM<-subset(subdescr,group=="MM")
+proofset1a<-length(SSM$lfd)+length(SEM$lfd)+length(SLC$lfd)+length(SMM$lfd)
+
+
+
+
+meanRTrawAd<-mean(SSM$adinterval)
+meanRTrawBd<-mean(SEM$adinterval)
+meanRTrawCd<-mean(SLC$adinterval)
+meanRTrawDd<-mean(SMM$adinterval)
+#standardabweichung response
+sdRTrawAd<-sd(SSM$adinterval)
+sdRTrawBd<-sd(SEM$adinterval)
+sdRTrawCd<-sd(SLC$adinterval)
+sdRTrawDd<-sd(SMM$adinterval)
+
+#discard outliers zeichenunabhängig
+LZTd<-subdescr$adinterval
+LZTdevd<-sd(LZTd)
+LZToutd<-LZTdevd*2.5
+LZTmeand<-mean(LZTd)
+LZTouttopd<-LZTmeand+LZToutd
+LZToutbottomd<-LZTmeand-LZToutd
+#outbottom manuell 319ms
+LZTbottommodd<-519
+LZTlisted<-subset(subdescr,adinterval<LZTouttopd&adinterval>LZTbottommodd)
+
+#subsets kategorienvergleich
+SSMod<-subset(LZTlisted,group=="SM")
+SEMod<-subset(LZTlisted,group=="EM")
+SLCod<-subset(LZTlisted,group=="LC")
+SMMod<-subset(LZTlisted,group=="MM")
+proofset1d<-length(SSMod$lfd)+length(SEMod$lfd)+length(SLCod$lfd)+length(SMMod$lfd)
+
+
+meanRTAd<-mean(SSMod$adinterval)
+meanRTBd<-mean(SEMod$adinterval)
+meanRTCd<-mean(SLCod$adinterval)
+meanRTDd<-mean(SMMod$adinterval)
+#standardabweichung response
+sdRTAd<-sd(SSMod$adinterval)
+sdRTBd<-sd(SEMod$adinterval)
+sdRTCd<-sd(SLCod$adinterval)
+sdRTDd<-sd(SMMod$adinterval)
+
+#outliers berechnen zeichenabhängig
+meanchd<-mean(subdescr$addchar)
+LZcptd<-subdescr$adinterval/subdescr$addchar
+LZdevd<-sd(LZcptd)
+LZoutd<-LZdevd*2.5
+LZmeand<-mean(LZcptd)
+LZouttopd<-LZmeand+LZoutd
+LZoutbottomd<-LZmeand-LZoutd
+#outbottom manuell 519ms
+LZbottommodd<-519/meanchd
+
+charsAd<-SSM$addchar
+charsBd<-SEM$addchar
+charsCd<-SLC$addchar
+charsDd<-SMM$addchar
+
+LZSMd<-(SSM$adinterval/charsAd)
+LZEMd<-(SEM$adinterval/charsBd)
+LZLCd<-(SLC$adinterval/charsCd)
+LZMMd<-(SMM$adinterval/charsDd)
+
+#with discard outliers
+LZSMd<-(LZSMd[LZSMd<LZouttopd&LZSMd>LZbottommodd])
+LZEMd<-(LZEMd[LZEMd<LZouttopd&LZEMd>LZbottommodd])
+LZLCd<-(LZLCd[LZLCd<LZouttopd&LZLCd>LZbottommodd])
+LZMMd<-(LZMMd[LZMMd<LZouttopd&LZMMd>LZbottommodd])
+
+#check number obs. after discard outliers
+proofset2d<-length(LZSMd)+length(LZEMd)+length(LZLCd)+length(LZMMd)
+
+#lesezeit / durchschnittliche targetphrase (zeichenabhängig)
+LZSMcd<-LZSMd*meanchd
+LZEMcd<-LZEMd*meanchd
+LZLCcd<-LZLCd*meanchd
+LZMMcd<-LZMMd*meanchd
+#mean LZ
+LSAcd<-mean(LZSMcd)
+LSBcd<-mean(LZEMcd)
+LSCcd<-mean(LZLCcd)
+LSDcd<-mean(LZMMcd)
+
+#sd LZ
+LSAsdd<-sd(LZSMcd)
+LSBsdd<-sd(LZEMcd)
+LSCsdd<-sd(LZLCcd)
+LSDsdd<-sd(LZMMcd)
+boxLZsdd<-cbind(SM=LSAsdd,EM=LSBsdd,LC=LSCsdd,ISM=LSDsdd)
+
+
+#summe LZ abhängig von zeichenanzahl und anzahl observationen
+
+obsAd<-length(SSM$adinterval)
+obsBd<-length(SEM$adinterval)
+obsCd<-length(SLC$adinterval)
+obsDd<-length(SMM$adinterval)
+
+
+
+sum1d<-sum(LZSMcd)/obsAd
+sum2d<-sum(LZEMcd)/obsBd
+sum3d<-sum(LZLCcd)/obsCd
+sum4d<-sum(LZMMcd)/obsDd
+
+#lab1<-paste0("basis durchschnittliche targetlaenge=", round(meanch), " zeichen")
+#boxLZmn<-cbind(SM=LSAc,EM=LSBc,LC=LSCc,ISM=LSDc)
+#boxplot(boxLZmn,main="mean Lesezeit (ms)",xlab=lab1)
+
+#sum1<-sum(LZSM)/obsA
+#sum2<-sum(LZEM)/obsB
+#sum3<-sum(LZLC)/obsC
+#sum4<-sum(LZMM)/obsD
+
+
+#differenz zwischen kategorien
+difsmemd<-sum1d-sum2d
+difsmlcd<-sum1d-sum3d
+difsmmmd<-sum1d-sum4d
+difemlcd<-sum2d-sum3d
+difemmmd<-sum2d-sum4d
+diflcmmd<-sum3d-sum4d
+dfksmemd<-sum1d/sum2d
+
+
+mdLZAd<-median(LZSMcd)
+mdLZBd<-median(LZEMcd)
+mdLZCd<-median(LZLCcd)
+mdLZDd<-median(LZMMcd)
+
+#differenzen median kategorien
+difsmemd<-mdLZAd-mdLZBd
+difsmlcd<-mdLZAd-mdLZCd
+difsmmmd<-mdLZAd-mdLZDd
+difemlcd<-mdLZBd-mdLZCd
+difemmmd<-mdLZBd-mdLZDd
+diflcmmd<-mdLZCd-mdLZDd
+dfksmemd<-sum1d/sum2d
+
+boxlabtgt<-" addiert target 0+1"
+labx<-paste0("Basis durchschnittliche targetlaenge=", round(meanch), " zeichen")
+toplab<-paste0("Lesezeiten (ms)",boxlabtgt)
+
+boxLZd<-cbind(SM=LZSMcd,EM=LZEMcd,LC=LZLCcd,ISM=LZMMcd)
+#boxplot(boxLZ,main="mean Lesezeiten gesamt in ms/106 zeichen fuer target+1",xlab="106 Zeichen = durchschnittliche Laenge target 0+1")
+boxplot(boxLZd,main=toplab, xlab=labx,notch=TRUE,col=c(1,2,3,4))
+
+toplab<-paste0("median Lesezeiten (ms)",boxlabtgt)
+boxLZmdd<-cbind(SM=mdLZAd,EM=mdLZBd,LC=mdLZCd,ISM=mdLZDd)
+boxplot(boxLZmdd,main=toplab,xlab=labx)
+
+toplab<-paste0("mean Lesezeiten (ms)",boxlabtgt)
+lab1<-paste0("basis durchschnittliche targetlaenge=", round(meanch), " zeichen")
+boxLZmnd<-cbind(SM=LSAcd,EM=LSBcd,LC=LSCcd,ISM=LSDcd)
+boxplot(boxLZmnd,main=toplab,xlab=lab1)
