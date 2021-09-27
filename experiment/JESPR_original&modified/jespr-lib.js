@@ -14,7 +14,7 @@
  * https://www.tutorialspoint.com/javascript/array_some.htm
  */
 
-//----------
+//////modified by STSCHWARZ for enabling saving the experiment results to a file///////////////////////////////////////////
 ////////////////////////////////////////////////SEARCH FOR [11272] TO FIND LINE WHERE TO INCLUDE ITEMS /////11252 for save routine///////////////////////////////////////
 //-----------------------
 
