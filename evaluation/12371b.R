@@ -1,4 +1,4 @@
-##ST.SCHWARZ/11351b/HUX20210927(16.08)
+##ST.SCHWARZ/12371b12393/HUX20210928(19.22)
 
 ##von hier der reihe nach:
 
@@ -9,7 +9,7 @@ library(stringi)
 
 
 #sprdataprepared <- read.csv("https://common.rotefadenbuecher.de/uni/public/jespr/modified/sprdataprepared.csv", sep=";")
-sprdataprepared <- read.csv("sprdatamod.csv", sep=";")
+sprdataprepared <- read.csv("https://common.rotefadenbuecher.de/uni/public/jespr/modified/sprdatamod.csv", sep=";")
 
 ##View(sprdataprepared)
 ##top datenframe aus datei, gueltige faelle, target 0+1
@@ -377,15 +377,27 @@ obsC<-length(SLC$timeinterval)
 obsD<-length(SMM$timeinterval)
 
 #R/F der reihe nach > mean response
-meanRTrawA<-mean(SSM$timeinterval)
-meanRTrawB<-mean(SEM$timeinterval)
-meanRTrawC<-mean(SLC$timeinterval)
-meanRTrawD<-mean(SMM$timeinterval)
+meanRTAraw<-mean(SSM$timeinterval)
+meanRTBraw<-mean(SEM$timeinterval)
+meanRTCraw<-mean(SLC$timeinterval)
+meanRTDraw<-mean(SMM$timeinterval)
 #standardabweichung response
-sdRTrawA<-sd(SSM$timeinterval)
-sdRTrawB<-sd(SEM$timeinterval)
-sdRTrawC<-sd(SLC$timeinterval)
-sdRTrawD<-sd(SMM$timeinterval)
+sdRTAraw<-sd(SSM$timeinterval)
+sdRTBraw<-sd(SEM$timeinterval)
+sdRTCraw<-sd(SLC$timeinterval)
+sdRTDraw<-sd(SMM$timeinterval)
+
+LZrawMeanA<-meanRTAraw
+LZrawMeanB<-meanRTBraw
+LZrawMeanC<-meanRTCraw
+LZrawMeanD<-meanRTDraw
+
+LZrawSdA<-sdRTAraw
+LZrawSdB<-sdRTBraw
+LZrawSdC<-sdRTCraw
+LZrawSdD<-sdRTDraw
+
+
 
 #discard outliers zeichenunabhängig
 LZT<-subdescr$timeinterval
@@ -406,15 +418,26 @@ SMMo<-subset(LZTliste,group=="MM")
 proofset1<-length(SSMo$lfd)+length(SEMo$lfd)+length(SLCo$lfd)+length(SMMo$lfd)
 
 
-meanRTA<-mean(SSMo$timeinterval)
-meanRTB<-mean(SEMo$timeinterval)
-meanRTC<-mean(SLCo$timeinterval)
-meanRTD<-mean(SMMo$timeinterval)
+meanRTAout<-mean(SSMo$timeinterval)
+meanRTBout<-mean(SEMo$timeinterval)
+meanRTCout<-mean(SLCo$timeinterval)
+meanRTDout<-mean(SMMo$timeinterval)
 #standardabweichung response
-sdRTA<-sd(SSMo$timeinterval)
-sdRTB<-sd(SEMo$timeinterval)
-sdRTC<-sd(SLCo$timeinterval)
-sdRTD<-sd(SMMo$timeinterval)
+sdRTAout<-sd(SSMo$timeinterval)
+sdRTBout<-sd(SEMo$timeinterval)
+sdRTCout<-sd(SLCo$timeinterval)
+sdRTDout<-sd(SMMo$timeinterval)
+
+LZoutMeanA<-meanRTAout
+LZoutMeanB<-meanRTBout
+LZoutMeanC<-meanRTCout
+LZoutMeanD<-meanRTDout
+
+LZoutSdA<-sdRTAout
+LZoutSdB<-sdRTBout
+LZoutSdC<-sdRTCout
+LZoutSdE<-sdRTDout
+
 
 #outliers berechnen zeichenabhängig
 LZcpt<-subdescr$timeinterval/chars
@@ -466,6 +489,11 @@ LSBc<-mean(LZEMc)
 LSCc<-mean(LZLCc)
 LSDc<-mean(LZMMc)
 
+LZcharA<-LSAc
+LZcharB<-LSBc
+LZcharC<-LSCc
+LZcharD<-LSDc
+
 #sd LZ
 LSAsd<-sd(LZSMc)
 LSBsd<-sd(LZEMc)
@@ -473,7 +501,10 @@ LSCsd<-sd(LZLCc)
 LSDsd<-sd(LZMMc)
 boxLZsd<-cbind(SM=LSAsd,EM=LSBsd,LC=LSCsd,ISM=LSDsd)
 
-
+LZcharSdA<-LSAsd
+LZcharSdB<-LSBsd
+LZcharSdC<-LSCsd
+LZcharSdD<-LSDsd
 #summe LZ abhängig von zeichenanzahl und anzahl observationen
 sum1<-sum(LZSMc)/obsA
 sum2<-sum(LZEMc)/obsB
@@ -732,7 +763,7 @@ diflcmmd<-mdLZCd-mdLZDd
 dfksmemd<-sum1d/sum2d
 
 boxlabtgt<-" addiert target 0+1"
-labx<-paste0("Basis durchschnittliche targetlaenge=", round(meanch), " zeichen")
+labx<-paste0("bewertungsgrundlage durchschnittlich ", round(meanchd), " zeichen")
 toplab<-paste0("Lesezeiten (ms)",boxlabtgt)
 
 boxLZd<-cbind(SM=LZSMcd,EM=LZEMcd,LC=LZLCcd,ISM=LZMMcd)
@@ -744,6 +775,6 @@ boxLZmdd<-cbind(SM=mdLZAd,EM=mdLZBd,LC=mdLZCd,ISM=mdLZDd)
 boxplot(boxLZmdd,main=toplab,xlab=labx)
 
 toplab<-paste0("mean Lesezeiten (ms)",boxlabtgt)
-lab1<-paste0("basis durchschnittliche targetlaenge=", round(meanch), " zeichen")
+lab1<-paste0("bewertungsgrundlage = durchschnittlich ", round(meanchd), " zeichen")
 boxLZmnd<-cbind(SM=LSAcd,EM=LSBcd,LC=LSCcd,ISM=LSDcd)
 boxplot(boxLZmnd,main=toplab,xlab=lab1)
