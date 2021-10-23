@@ -16,7 +16,8 @@ var jesprExperimentDesignForButton = { //actuel 11284///// items in: 2,5,6,10,11
         "other": ""
     }],
     "font-name": "courier",
-    "font-size": "14",
+    "font-size": "13",
+  //  "line-height": "0.9",
     "text-color": "black",
     "background-color": "lightgray",
     "display": "moving-window",
@@ -206,7 +207,7 @@ var jesprExperimentDesignForButton = { //actuel 11284///// items in: 2,5,6,10,11
  {
                                         "item": {
                                             "id": "EM003",
-                                            "tags": [ "RUB", "1MM" ],
+                                            "tags": [ "RUB", "3EM" ],
                                             "string": "mönch am meer,| der in den sand, der in die wiedergeborene linie am morgen |{seinen fusz setzt.}| wägt den tag ab: |eine neue aufgabe, |eine die wartet, |eine die jetzt schon vergangen.",
                     
                                         } 

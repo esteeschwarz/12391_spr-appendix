@@ -150,7 +150,7 @@ function Item(id, text, orientation, fixationChar, maskChar, display, prompt, op
     if (orientation === 'horizontal' | orientation === 'vertical') {
         this.orientation = orientation;
     } else {
-        this.orientation = "horizontal";
+        this.orientation = "vertical";
         // default to horizontal
     }
     this.fixationChar = fixationChar;
@@ -181,7 +181,7 @@ Item.prototype.show = function (frame, elapsedTime) {
     this.frame = frame;
     this.frame.appendChild(this.html);
     // add to DOM
-    this.html.style.display = "block";
+    this.html.style.display = "inline-block";
     // show it
     this.curRegionIndex = -1;
     // represents the fixation mark
@@ -206,7 +206,7 @@ Item.prototype.processKeydown = function (keyCode, elapsedTime) {
             var fixationP = document.getElementById(this.id + "_fixation");
             fixationP.style.display = "none";
             var stimulusP = document.getElementById(this.id + "_stimulus");
-            stimulusP.style.display = "block";
+            stimulusP.style.display = "inline-block";
             for (var i = 0; i < this.regions.length; i++) {
                 this.regions[i].unmask();
                 this.regions[i].lockWidth();
@@ -236,7 +236,7 @@ Item.prototype.processKeydown = function (keyCode, elapsedTime) {
                 var stimulusP = document.getElementById(this.id + "_stimulus");
                 stimulusP.style.display = "none";
                 var promptP = document.getElementById(this.id + "_prompt");
-                promptP.style.display = "block";
+                promptP.style.display = "inline-block";
                 promptP.style.visibility = "visible";
             } else {
                 this.hide();
@@ -322,7 +322,7 @@ Item.prototype.processNextButtonClick = function (elapsedTime) {
         var fixationP = document.getElementById(this.id + "_fixation");
         fixationP.style.display = "none";
         var stimulusP = document.getElementById(this.id + "_stimulus");
-        stimulusP.style.display = "block";
+        stimulusP.style.display = "inline-block";
         for (var i = 0; i < this.regions.length; i++) {
             this.regions[i].unmask();
             this.regions[i].lockWidth();
@@ -691,7 +691,7 @@ Title.prototype.show = function (frame, elapsedTime) {
     this.frame = frame;
     this.frame.appendChild(this.html);
     // add to DOM
-    this.html.style.display = "block";
+    this.html.style.display = "inline-block";
     // show it
     this.showTime = elapsedTime;
 };
@@ -824,7 +824,7 @@ Instructions.prototype.show = function (frame, elapsedTime) {
     this.frame = frame;
     this.frame.appendChild(this.html);
     // add to DOM
-    this.html.style.display = "block";
+    this.html.style.display = "inline-block";
     // show it
     this.showTime = elapsedTime;
 };
