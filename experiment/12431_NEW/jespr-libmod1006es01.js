@@ -1308,7 +1308,7 @@ const xmlhttp = new XMLHttpRequest();
 */
 
  
- $.post("write1005es01.php",
+ $.post("write1006es01.php",
   {
     q: "Donald Duck",
     data: saved
