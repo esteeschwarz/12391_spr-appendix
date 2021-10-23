@@ -5,3 +5,5 @@
 ## HUX 2021 - Ein psycholinguistisches Experiment zum Metaphernverständnis
 -------------------------------------------------------------------------
 please find here the experiment appendix as available.
+
+12431: sync essai / develop new stimuli
