@@ -8,6 +8,7 @@
 
     <script src="https://common.rotefadenbuecher.de/uni/public/jespr/modified/jquerymin.js"></script>
     <script src="jespr-sample1006es01key.js"></script>
+    <script src="jespr-sample1006es01button.js"></script>
     <script src="jespr-libmod1006es01.js"></script>
     <script src="loadstimuli1006es01.js"></script>
      <link href="jespr1006es01.css" rel="stylesheet" type="text/css" />
@@ -28,6 +29,8 @@
       }
       
       p.buttons button {
+      position: absolute;
+      top: 80%;
           margin: 1em 0.5em;
           background-color: gray;
           color: black;
@@ -49,17 +52,13 @@
       }</style>
   </head>
   <body>
-    <div id="top">
-   <!--   <img src="jespr-logo.png" class="logo" alt="JESPR Logo" />
-      <h1>JESPR: Javascript-Enabled Self-Paced Reading</h1>
-      <p>A javascript library for conducting Self-Paced Reading experiments via a web browser.</p>
-  -->  </div>
+
     <div id="content">
     
          <p class="buttons">
-          <button type="button" onclick="checkNGoKeyboard();" id="btnStartKeyboardDemo">Hier den Test beginnen</button>
-       <!--   <button type="button" onclick="checkNGoButton();" id="btnStartButtonDemo">Click here noch nicht<br/>test for <br/>(mouse/screen)</button>
-          <button type="button" onclick="showabout()" id="btnGotoJesprHP">about this<br/>experiment</button>-->
+         <!-- <button type="button" onclick="checkNGoKeyboard();" id="btnStartKeyboardDemo">[KEYBOARD]</button>-->
+          <button type="button" onclick="checkNGoButton();" id="btnStartButtonDemo">[PRESS...]</button>
+        <!--  <button type="button" onclick="showabout()" id="btnGotoJesprHP">about this<br/>experiment</button>-->
       </p>
      
     </div>
@@ -110,14 +109,14 @@
             }
             
             function enableButtons() {
-                document.getElementById("btnStartKeyboardDemo").disabled = false;
-              //  document.getElementById("btnStartButtonDemo").disabled = false;
+              //  document.getElementById("btnStartKeyboardDemo").disabled = false;
+                document.getElementById("btnStartButtonDemo").disabled = false;
              //   document.getElementById("btnGotoJesprHP").disabled = false;
             }
             
             function disableButtons() {
-                document.getElementById("btnStartKeyboardDemo").disabled = true;
-              //  document.getElementById("btnStartButtonDemo").disabled = true;
+       //         document.getElementById("btnStartKeyboardDemo").disabled = true;
+            document.getElementById("btnStartButtonDemo").disabled = true;
               //  document.getElementById("btnGotoJesprHP").disabled = true;
             }
             

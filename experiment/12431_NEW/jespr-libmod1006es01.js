@@ -857,7 +857,7 @@ Instructions.prototype.processKeydown = function (keyCode, elapsedTime, minTime)
 };
 
 Instructions.prototype.processNextButtonClick = function (elapsedTime, minTime) {
-
+ var result ="continue";
     if (elapsedTime - this.showTime > minTime) {
         this.elapsedTime = elapsedTime;
         this.keyCode = "NEXT_BTN";
@@ -867,10 +867,10 @@ Instructions.prototype.processNextButtonClick = function (elapsedTime, minTime) 
     return result;
 };
 
-Instructions.prototype.processOptionButtonClick = function (elapsedTime, minTime, id, parentId) {
+//Instructions.prototype.processOptionButtonClick = function (elapsedTime, minTime, id, parentId) {
     // Should never reach this function. Return "end of screen" in order to avoid infinite loop.
-    return "end of screen";
-};
+//    return "end of screen";
+//};
 
 /*
  * Creates a <div> object to show the instructions
@@ -1084,7 +1084,7 @@ Experiment.prototype.startExperiment = function (callback) {
         this.nextButton = document.createElement("BUTTON");
         this.nextButton.id = "jespr.nextButton";
         this.nextButton.className = "nextButton";
-        this.nextButton.textContent = "Click here to continue";
+        this.nextButton.textContent = "...[PRESS]...";
         if (this.nextButton.addEventListener) {
             this.nextButton.addEventListener("click", this.processNextButtonClick);
         } else if (this.nextButton.attachEvent) {
@@ -1587,7 +1587,7 @@ Experiment.prototype.createFrame = function () {
         kbdHelp.appendChild(kbdHelpLeft);
         var kbdHelpCenter = document.createElement("div");
         kbdHelpCenter.className = "keyboardHelpCenter";
-        kbdHelpCenter.textContent = "weiter mit [LEERTASTE]";
+        kbdHelpCenter.textContent = "...";
         kbdHelp.appendChild(kbdHelpCenter);
         var kbdHelpRight = document.createElement("div");
         kbdHelpRight.className = "keyboardHelpRight";
