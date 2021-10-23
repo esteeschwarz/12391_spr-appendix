@@ -150,7 +150,7 @@ position: relative;
     margin: 0;
     font-family: inherit;
     font-size: 1em;
-        line-height: 0.7;
+        line-height: 0.9;
 
     color: inherit;
     visibility: hidden;
@@ -172,7 +172,8 @@ span.option {
     font-family: inherit;
     font-size: inherit;
     color: inherit;
-    display: block;
+    position:relative;
+    display: inline-block;
     text-align: left;
     margin-top: 0.25em;
     margin-bottom: 0.25em;

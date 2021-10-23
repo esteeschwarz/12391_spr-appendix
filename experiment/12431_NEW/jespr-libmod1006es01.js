@@ -944,6 +944,10 @@ function Experiment(design, form) {
     // General experiment settings and parameters
     this.title = typeof design[ "title"] !== 'undefined' ? jesprTrim(design[ "title"]): "A Self-paced Reading Experiment";
     this.fontname = typeof design[ "font-name"] !== 'undefined' ? jesprTrim(design[ "font-name"]): "Courier new";
+    
+    ////
+    this.lineheight = typeof design["line-height"] !=='undefined' ? jesprTrim(design["line-height"]):"1";
+    
     this.fontsize = typeof design[ "font-size"] !== 'undefined' ? Number(jesprTrim(design[ "font-size"])): 12;
     this.fontsize = ! isNaN(this.fontsize) ? this.fontsize: 12;
     // Following colors must be HTML supported color names; e.g., http://www.w3schools.com/colors/colors_names.asp
