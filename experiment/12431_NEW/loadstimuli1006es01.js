@@ -18,7 +18,7 @@ Experiment.prototype.loadStimuliGroup = function (design, setName, ord) {
         var options = item[ "options"];
 
 //////////////////////12374.bugfinding fast runthrough test
-let itemchoice =(id=="practice03"|| id=="SM001"||  id=="LC001" || id=="LC002" || id=="MM001"|| id=="MM002"||id=="EM002"||id=="EM001") ? 1:0;   //here to include items einfügen
+let itemchoice =(id=="practice03"|| id=="SM001"||  id=="LC001" || id=="LC002" || id=="EM003"|| id=="FIL002"||id=="EM002"||id=="EM001") ? 1:0;   //here to include items einfügen
 
        
      /////jeweils auf unterschiedliche bögen (lib mod libraries) verteilen und von verschiedenen index im frame aufrufen lassen  
