@@ -6,8 +6,9 @@
 -------------------------------------------------------------------------
 please find here the experiment appendix as available.
 
-12431: sync essai / develop new stimuli
-12032.public
+#### 12431 
+sync essai / develop new stimuli
+#### 12032.public
 poster improvisation
-12047.
+#### 12047.
 view poster [here.](https://esteeschwarz.github.io/12431_hux2021-appendix/) 
