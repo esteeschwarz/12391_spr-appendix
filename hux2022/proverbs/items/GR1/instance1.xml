@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/Users/lion/Downloads/fragenschema.xsd">
+    <text>text0</text>
+    <attributes.specific program="program0">
+        <attr id="id0">attr0</attr>
+        <attr id="id1">attr1</attr>
+    </attributes.specific>
+</item>
