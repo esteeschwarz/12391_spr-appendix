@@ -3,10 +3,35 @@
 
 #import data
 #xmlschema
-qscheme <- read.csv("~/boxHKW/21S/HU X/experiment/gith/12032/12431_hux2021-appendix/hux2022/proverbs/12054_qscheme/qscheme.csv", sep=";")
+library(Hmisc)
+#clowess()
+download_xml("https://github.com/esteeschwarz/12431_hux2021-appendix/raw/master/hux2022/proverbs/package_fragen_2022-02-01.xml","template.xml")
+#getRS()
+#getRS(guser="esteeschwarz",grepo="essais",gdir="main")
+#getRs(file=NULL, guser='harrelfe', grepo='rscripts', gdir='raw/master',
+ #     dir=NULL, browse=c('local', 'browser'), cats=FALSE,
+  #    put=c('rstudio', 'source'))
+download.file("https://github.com/esteeschwarz/12431_hux2021-appendix/raw/master/hux2022/proverbs/Kopie%20von%20package_fragen_2022-02-01_mod.xlsx","tempmod.xlsx")
+scheme<-read_xml("template.xml")
+xml_text(scheme)
+library(tidyverse)
+print(a1<-xml_text(xml_node(scheme,8)))
+html_element()
+xml_name(scheme)
+xml_attr.xml_node(scheme,lead)
+xml_attrs(scheme)
+a1_cases<-(xml_text(xml_children(xml_children(xml_children(xml_children(xml_contents(scheme)))))))
+a1<-(xml_text(xml_children(xml_children(xml_children(xml_contents(scheme))))))
+
+print (a1)
+a2<-xml_text(scheme,2)
+a2<-xml_text(scheme,2)
+
+#qscheme <- read.csv("qscheme.csv", sep=";")
+
 
 #itemtabelle
-templ <- read.csv("~/boxHKW/21S/HU X/experiment/gith/12032/12431_hux2021-appendix/hux2022/proverbs/12054_qscheme/template.csv", sep=";")
+templ <- read.csv("https://github.com/esteeschwarz/12431_hux2021-appendix/blob/master/hux2022/proverbs/12054_qscheme/template.csv", sep=";")
 
 #per item:
 #2 leerzeilen
