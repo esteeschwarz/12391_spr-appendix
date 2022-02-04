@@ -13,7 +13,7 @@
 #xmlschema
 library(Hmisc)
 #clowess()
-download_xml("https://github.com/esteeschwarz/12431_hux2021-appendix/raw/12042/hux2022/proverbs/package_fragen_2022-02-02.xml","template.xml")
+download_xml("https://github.com/esteeschwarz/12431_hux2021-appendix/raw/12057_VS/hux2022/proverbs/package_hux2022_fragen_templateB_2022-02-04.xml","template.xml")
 #getRS()
 #getRS(guser="esteeschwarz",grepo="essais",gdir="main")
 #getRs(file=NULL, guser='harrelfe', grepo='rscripts', gdir='raw/master',
@@ -22,22 +22,23 @@ download_xml("https://github.com/esteeschwarz/12431_hux2021-appendix/raw/12042/h
 #download.file("https://github.com/esteeschwarz/12431_hux2021-appendix/raw/master/hux2022/proverbs/Kopie%20von%20package_fragen_2022-02-01_mod.xlsx","tempmod.xlsx")
 scheme<-read_xml("template.xml")
 xml_text(scheme)
-library(tidyverse)
-print(a1<-xml_text(xml_node(scheme,8)))
-html_element()
-xml_name(scheme)
-xml_attr.xml_node(scheme,lead)
-xml_attrs(scheme)
+#library(tidyverse)
+#print(a1<-xml_text(xml_node(scheme,8)))
+#html_element()
+#xml_name(scheme)
+#xml_attr.xml_node(scheme,lead)
+#xml_attrs(scheme)
 children1<-(xml_children(xml_children(xml_children(xml_contents(scheme)))))
 children2<-(xml_children(xml_children(xml_children(xml_children(xml_contents(scheme))))))
 children0<-(xml_children(xml_children(xml_contents(scheme))))
 
-a1_cases<-(xml_text(xml_children(xml_children(xml_children(xml_children(xml_contents(scheme)))))))
-a1<-(xml_text(xml_children(xml_children(xml_children(xml_contents(scheme))))))
+#a1_cases<-(xml_text(xml_children(xml_children(xml_children(xml_children(xml_contents(scheme)))))))
+#a1<-(xml_text(xml_children(xml_children(xml_children(xml_contents(scheme))))))
 
-antworten<-(xml_text(children1))
+a1<-antworten<-(xml_text(children1))
 items_complete<-a0<-(xml_text(children0))
 print (a0)
+print (a1)
 
 
 
